@@ -30,15 +30,15 @@ Java (SPRINGBOOT)
 
                
 
-                O app deve encontrar todos os IPs que fizeram mais que 100 requisições entre 2017-01-01.13:00:00 e 2017-01-01.14:00:00 (uma hora) e imprimí-lo no console como uma informação. Também deve carregar estes dados para uma tabela de banco de dados com o comentário do porquê está bloqueado.
+O app deve encontrar todos os IPs que fizeram mais que 100 requisições entre 2017-01-01.13:00:00 e 2017-01-01.14:00:00 (uma hora) e imprimí-lo no console como uma informação. Também deve carregar estes dados para uma tabela de banco de dados com o comentário do porquê está bloqueado.
 
  
 
-                java -jar "parser.jar" --startDate=2017-01-01.13:00:00 --duration=daily --threshold=250
+    java -jar "parser.jar" --startDate=2017-01-01.13:00:00 --duration=daily --threshold=250
 
  
 
-                O app deve encontrar todos os IPs que fizeram mais que 250 requisições entre 2017-01-01.13:00:00 a 2017-01-02.13:00:00 (24 horas) e imprimí-lo no console como uma informação. Também deve carregar estes dados para uma tabela de banco de dados com o comentário do porquê está bloqueado.
+O app deve encontrar todos os IPs que fizeram mais que 250 requisições entre 2017-01-01.13:00:00 a 2017-01-02.13:00:00 (24 horas) e imprimí-lo no console como uma informação. Também deve carregar estes dados para uma tabela de banco de dados com o comentário do porquê está bloqueado.
 
  
 
@@ -90,7 +90,7 @@ Ao rodar:
 
  
 
-java -jar parser.jar --startDate=2017-01-01.15:00:00 --duration=hourly --threshold=200
+    java -jar parser.jar --startDate=2017-01-01.15:00:00 --duration=hourly --threshold=200
 
 O resultao deverá ser 192.168.11.231.
 
@@ -104,7 +104,7 @@ Ao rodar:
 
  
 
-java -jar parser.jar --startDate=2017-01-01.00:00:00 --duration=daily --threshold=500
+    java -jar parser.jar --startDate=2017-01-01.00:00:00 --duration=daily --threshold=500
 
  
 
