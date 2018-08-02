@@ -1,10 +1,10 @@
-# parser
+# LOG-PARSER
 
 Meta:
 
 - Escrever um parser que acesse um arquivo de LOG, carregue os dados em um banco de dados e valide se um determinado IP fez mais que um determinado número de requisições em um período de tempo.
 
-## Java (SPRINGBOOT)
+## Java (Spring Boot)
 
 ----
 
