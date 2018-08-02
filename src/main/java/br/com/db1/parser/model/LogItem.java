@@ -15,7 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "LOG")
-public class LogFile {
+public class LogItem {
 	
 	@Id
 	@Column
@@ -63,10 +63,10 @@ public class LogFile {
 	}
 	
 	public static class LogFileBuilder {
-		LogFile log;
+		LogItem log;
 		
 		public LogFileBuilder() {
-			log = new LogFile();
+			log = new LogItem();
 		}
 		
 		public LogFileBuilder withDate(LocalDateTime date) {
@@ -94,7 +94,7 @@ public class LogFile {
 			return this;
 		}
 		
-		public LogFile build() {
+		public LogItem build() {
 			return log;
 		}
 	}

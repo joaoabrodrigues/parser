@@ -11,7 +11,7 @@ import org.springframework.format.support.DefaultFormattingConversionService;
  * 
  * Configuration class to use different types 
  * of data in property sources, like @Value
- * @author joao
+ * @author joaoabrodrigues
  *
  */
 @Configuration
