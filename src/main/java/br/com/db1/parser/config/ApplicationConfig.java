@@ -8,7 +8,7 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.format.support.DefaultFormattingConversionService;
 
 /**
- * 
+ *
  * Configuration class to use different types 
  * of data in property sources, like @Value
  * @author joaoabrodrigues
@@ -22,7 +22,7 @@ public class ApplicationConfig {
     public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
     }
-    
+
     @Bean
     public static ConversionService conversionService() {
         return new DefaultFormattingConversionService();

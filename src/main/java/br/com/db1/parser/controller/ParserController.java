@@ -20,20 +20,20 @@ import javax.websocket.server.PathParam;
 
 @RestController
 public class ParserController {
-	
-	@Autowired
-	private ParserService parserService;
 
-	@PostMapping(path = "/importFile", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity loadLogFile(@RequestBody String path) {
-		parserService.importLogFile(path);
-		return ResponseEntity.ok("");
-	}
+    @Autowired
+    private ParserService parserService;
 
-	@GetMapping(path = "/log", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity findLogs(@RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd.HH:mm:ss") LocalDateTime startDate,
-								   @RequestParam("duration") DurationType duration,
-								   @RequestParam("threshold") Integer threshold){
-		return ResponseEntity.ok(parserService.findLogs(startDate, duration, threshold));
-	}
+    @PostMapping(path = "/importFile", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity loadLogFile(@RequestBody String path) {
+        parserService.importLogFile(path);
+        return ResponseEntity.ok("");
+    }
+
+    @GetMapping(path = "/log", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity findLogs(@RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd.HH:mm:ss") LocalDateTime startDate,
+                                   @RequestParam("duration") DurationType duration,
+                                   @RequestParam("threshold") Integer threshold){
+        return ResponseEntity.ok(parserService.findLogs(startDate, duration, threshold));
+    }
 }
