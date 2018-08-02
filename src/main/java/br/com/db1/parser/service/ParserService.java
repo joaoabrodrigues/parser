@@ -41,37 +41,37 @@ public class ParserService {
     private String accessLog;
 
     @Autowired
-	private LogItemRepository repository;
+    private LogItemRepository repository;
 
     public void print() {
         importLogFile(accessLog);
         findLogs(startDate, duration, threshold);
     }
 
-	public void importLogFile(String fileName) {
+    public void importLogFile(String fileName) {
         LOG.info(String.format("Importing file: %s ", fileName));
 
         List<String> list = getFileToList(fileName);
 
         List<LogItem> logList = new ArrayList<>();
 
-		list.forEach(s -> {
-			String[] line = s.split("\\|");
-			
-			LogItem log = LogItem.builder()
-				   .withDate(LocalDateTime.parse(line[0], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")))
-				   .withIp(line[1])
-				   .withMethod(line[2])
-				   .withStatusCode(line[3])
-				   .withUserAgent(line[4])
-				   .build();
+        list.forEach(s -> {
+            String[] line = s.split("\\|");
+
+            LogItem log = LogItem.builder()
+                    .withDate(LocalDateTime.parse(line[0], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")))
+                    .withIp(line[1])
+                    .withMethod(line[2])
+                    .withStatusCode(line[3])
+                    .withUserAgent(line[4])
+                    .build();
 
             logList.add(log);
-		});
+        });
 
-		repository.saveAll(logList);
-        LOG.info("File imported" );
-	}
+        repository.saveAll(logList);
+        LOG.info("File imported");
+    }
 
     private List<String> getFileToList(String fileName) {
         List<String> list = new ArrayList<>();
@@ -88,7 +88,7 @@ public class ParserService {
     public Map findLogs(LocalDateTime startDate, DurationType duration, Integer threshold) {
         LOG.info(String.format("Finding ips by %s, %s, %d", startDate.toString(), duration.toString(), threshold));
 
-	    LocalDateTime endDate = DurationType.isDaily(duration) ? startDate.plusDays(1L) : startDate.plusHours(1L);
+        LocalDateTime endDate = DurationType.isDaily(duration) ? startDate.plusDays(1L) : startDate.plusHours(1L);
 
         List<LogItem> logs = repository.findByDateBetween(startDate, endDate);
 
@@ -98,5 +98,4 @@ public class ParserService {
         LOG.info("IPs found: \n" + filteredItems);
         return filteredItems;
     }
-
 }

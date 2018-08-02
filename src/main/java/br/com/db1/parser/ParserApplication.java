@@ -22,7 +22,7 @@ import java.util.Map;
 @ComponentScan
 public class ParserApplication extends SpringBootServletInitializer {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(ParserApplication.class, args);
 
         context.getBean(ParserService.class).print();
