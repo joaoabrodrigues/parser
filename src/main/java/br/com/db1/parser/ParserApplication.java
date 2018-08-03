@@ -7,11 +7,13 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Configuration;
 
+import java.io.IOException;
+
 @SpringBootApplication
 @Configuration
 public class ParserApplication extends SpringBootServletInitializer {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ConfigurableApplicationContext context = SpringApplication.run(ParserApplication.class, args);
 
         context.getBean(ParserService.class).print();
