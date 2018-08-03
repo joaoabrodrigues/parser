@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.Optional;
 
 public abstract class AbstractLogTest {
 
@@ -24,7 +26,9 @@ public abstract class AbstractLogTest {
 
     private void importFile() throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("access.log").getFile());
+        URL url = classLoader.getResource("access.log");
+
+        File file = new File(Optional.ofNullable(url).orElseThrow(IOException::new).getFile());
 
         service.importLogFile(file.getAbsolutePath());
     }

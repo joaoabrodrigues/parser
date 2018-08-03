@@ -15,8 +15,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -44,7 +47,8 @@ public class ParserControllerTest {
     @Test
     public void step1_shouldImportFile() throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("access.log").getFile());
+        URL url = classLoader.getResource("access.log");
+        File file = new File(Optional.ofNullable(url).orElseThrow(IOException::new).getFile());
 
         mockMvc.perform(post("/importFile")
                 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
