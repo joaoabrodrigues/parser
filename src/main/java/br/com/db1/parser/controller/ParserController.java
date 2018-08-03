@@ -1,28 +1,24 @@
 package br.com.db1.parser.controller;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.util.List;
-
-import br.com.db1.parser.dto.LogRequestDTO;
+import br.com.db1.parser.model.DurationType;
+import br.com.db1.parser.service.ParserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import br.com.db1.parser.model.DurationType;
-import br.com.db1.parser.model.LogItem;
-import br.com.db1.parser.service.ParserService;
-
-import javax.websocket.server.PathParam;
+import java.time.LocalDateTime;
 
 @RestController
 public class ParserController {
 
+    private final ParserService parserService;
+
     @Autowired
-    private ParserService parserService;
+    public ParserController(ParserService parserService) {
+        this.parserService = parserService;
+    }
 
     @PostMapping(path = "/importFile", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity loadLogFile(@RequestBody String path) {

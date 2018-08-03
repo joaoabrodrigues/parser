@@ -1,17 +1,11 @@
 package br.com.db1.parser.model;
 
-import java.time.LocalDateTime;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "LOG")
@@ -32,10 +26,10 @@ public class LogItem {
     @Column
     private String method;
 
-    @Column(name = "STATUS_CODE")
+    @Column
     private String statusCode;
 
-    @Column(name = "USER_AGENT")
+    @Column
     private String userAgent;
 
     public LocalDateTime getDate() {
@@ -65,7 +59,7 @@ public class LogItem {
     public static class LogFileBuilder {
         LogItem log;
 
-        public LogFileBuilder() {
+        private LogFileBuilder() {
             log = new LogItem();
         }
 

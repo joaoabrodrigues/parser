@@ -10,7 +10,7 @@ import org.springframework.format.support.DefaultFormattingConversionService;
 /**
  *
  * Configuration class to use different types 
- * of data in property sources, like @Value
+ * of data (eg. LocalDateTime) in property sources (@Value)
  * @author joaoabrodrigues
  *
  */
