@@ -1,21 +1,11 @@
 package br.com.db1.parser.dto;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public class ImportFileRequestDTO {
 
+    @Getter
     private String path;
-
-    public ImportFileRequestDTO() {
-    }
-
-    public ImportFileRequestDTO(String path) {
-        this.path = path;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
 }

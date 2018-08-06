@@ -1,12 +1,16 @@
 package br.com.db1.parser.model;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Data
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "LOG")
 public class LogItem {
@@ -32,75 +36,12 @@ public class LogItem {
     @Column
     private String userAgent;
 
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public String getMethod() {
-        return method;
-    }
-
-    public String getStatusCode() {
-        return statusCode;
-    }
-
-    public String getUserAgent() {
-        return userAgent;
-    }
-
-    public static LogFileBuilder builder() {
-        return new LogFileBuilder();
-    }
-
-    public static class LogFileBuilder {
-        LogItem log;
-
-        private LogFileBuilder() {
-            log = new LogItem();
-        }
-
-        public LogFileBuilder withDate(LocalDateTime date) {
-            log.date = date;
-            return this;
-        }
-
-        public LogFileBuilder withIp(String ip) {
-            log.ip = ip;
-            return this;
-        }
-
-        public LogFileBuilder withMethod(String method) {
-            log.method = method;
-            return this;
-        }
-
-        public LogFileBuilder withStatusCode(String statusCode) {
-            log.statusCode = statusCode;
-            return this;
-        }
-
-        public LogFileBuilder withUserAgent(String userAgent) {
-            log.userAgent = userAgent;
-            return this;
-        }
-
-        public LogItem build() {
-            return log;
-        }
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.JSON_STYLE)
-                .append("date", date)
-                .append("ip", ip)
-                .append("method", method)
-                .append("statusCode", statusCode)
-                .append("userAgent", userAgent)
-                .toString();
+    public LogItem(Long id, LocalDateTime date, String ip, String method, String statusCode, String userAgent) {
+        this.id = id;
+        this.date = date;
+        this.ip = ip;
+        this.method = method;
+        this.statusCode = statusCode;
+        this.userAgent = userAgent;
     }
 }

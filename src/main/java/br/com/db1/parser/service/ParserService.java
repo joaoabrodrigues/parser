@@ -62,11 +62,11 @@ public class ParserService {
         List<LogItem> logList = list.stream()
                 .map(s -> s.split("\\|"))
                 .map(line -> LogItem.builder()
-                        .withDate(LocalDateTime.parse(line[0], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")))
-                        .withIp(line[1])
-                        .withMethod(line[2])
-                        .withStatusCode(line[3])
-                        .withUserAgent(line[4])
+                        .date(LocalDateTime.parse(line[0], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")))
+                        .ip(line[1])
+                        .method(line[2])
+                        .statusCode(line[3])
+                        .userAgent(line[4])
                         .build())
                 .collect(Collectors.toList());
 
