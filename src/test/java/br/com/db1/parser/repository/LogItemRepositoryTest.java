@@ -42,7 +42,7 @@ public class LogItemRepositoryTest extends AbstractLogTest {
     }
 
     @Test
-    public void shouldFindByIp2() {
+    public void shouldFindByOtherIp() {
         List<LogItem> items = repository.findByIp("192.168.122.135");
         Assert.assertEquals(229, items.size());
     }

@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -91,5 +92,10 @@ public class ParserServiceTest extends AbstractLogTest {
         Assert.assertEquals(601L, logs.get("192.168.203.111"));
         Assert.assertEquals(582L, logs.get("192.168.62.176"));
         Assert.assertEquals(536L, logs.get("192.168.206.141"));
+    }
+
+    @Test(expected = IOException.class)
+    public void shouldThrowIOException() throws IOException {
+        service.importLogFile("xablau");
     }
 }

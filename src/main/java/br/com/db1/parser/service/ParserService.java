@@ -18,6 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -75,12 +76,15 @@ public class ParserService {
     }
 
     private List<String> getFileToList(String fileName) throws IOException {
+        Stream<String> stream = null;
         try {
-            Stream<String> stream = Files.lines(Paths.get(fileName));
+            stream = Files.lines(Paths.get(fileName));
             return stream.collect(Collectors.toList());
         } catch (IOException e) {
             LOG.error("Error loading log file. " + e.getMessage(), e);
             throw e;
+        } finally {
+            Optional.ofNullable(stream).ifPresent(Stream::close);
         }
     }
 
