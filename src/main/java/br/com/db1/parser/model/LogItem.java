@@ -1,14 +1,14 @@
 package br.com.db1.parser.model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@ToString
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Builder
 @Entity
@@ -35,13 +35,4 @@ public class LogItem {
 
     @Column
     private String userAgent;
-
-    public LogItem(Long id, LocalDateTime date, String ip, String method, String statusCode, String userAgent) {
-        this.id = id;
-        this.date = date;
-        this.ip = ip;
-        this.method = method;
-        this.statusCode = statusCode;
-        this.userAgent = userAgent;
-    }
 }
