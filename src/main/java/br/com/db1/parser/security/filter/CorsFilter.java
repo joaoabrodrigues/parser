@@ -1,4 +1,4 @@
-package br.com.db1.parser.security.config;
+package br.com.db1.parser.security.filter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,9 +13,9 @@ import java.io.IOException;
 
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class CorsConfig implements Filter {
+public class CorsFilter implements Filter {
 
-    private static final Log LOG = LogFactory.getLog(CorsConfig.class);
+    private static final Log LOG = LogFactory.getLog(CorsFilter.class);
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
