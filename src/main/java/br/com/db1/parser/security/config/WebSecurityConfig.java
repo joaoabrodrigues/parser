@@ -1,7 +1,6 @@
 package br.com.db1.parser.security.config;
 
 
-import br.com.db1.parser.exception.handler.CustomAccessDeniedHandler;
 import br.com.db1.parser.exception.handler.CustomAuthenticationEntryPoint;
 import br.com.db1.parser.security.AuthManager;
 import br.com.db1.parser.security.filter.JWTAuthenticationFilter;
@@ -23,16 +22,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomAuthenticationEntryPoint customAuthEntryPoint;
 
-    @Autowired
-    private CustomAccessDeniedHandler unauthorizedHandler;
-
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf()
                 .disable()
                 .exceptionHandling()
                 .authenticationEntryPoint(customAuthEntryPoint)
-                .accessDeniedHandler(unauthorizedHandler)
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
