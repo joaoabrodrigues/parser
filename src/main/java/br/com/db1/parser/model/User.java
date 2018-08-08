@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table
