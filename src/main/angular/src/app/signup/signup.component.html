@@ -1,0 +1,33 @@
+<div fxFlexFill fxLayout="column" fxLayoutAlign="center">
+    <div fxLayout="row" fxLayoutWrap fxLayoutAlign="center" class="overflowScroll">
+        <div fxFlex="500px" fxFlex.xs="90">
+          <mat-card class="mat-elevation-z7">
+              <mat-card-header fxLayoutAlign="center">                
+                  <mat-card-title> <img src="./assets/img/add.png"/> </mat-card-title>
+                  <mat-card-subtitle fxLayoutAlign="center">Signup</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <form fxLayout="column" [formGroup]="form" (keyup.enter)="sendRequest()">
+                  <mat-form-field>
+                      <input matInput autofocus formControlName="username" placeholder="Username" value="">
+                      <mat-error *ngIf="form.controls['username'].hasError('required')">
+                          Mandatory field
+                      </mat-error>
+                  </mat-form-field>
+                  <mat-form-field>
+                      <input matInput formControlName="password" placeholder="Password" value="" type="password">
+                      <mat-error *ngIf="form.controls['password'].hasError('required')">
+                        Mandatory field
+                      </mat-error>
+                  </mat-form-field>
+                  <br/>
+                  <button mat-raised-button [disabled]="!form.valid" (click)="sendRequest()" type="button" color="primary">Signup</button>
+                  <br>
+                  <button mat-raised-button (click)="backToLogin()" type="button" color="accent">Back</button>
+                </form>
+              </mat-card-content>
+            </mat-card>
+            <mat-progress-bar *ngIf="login" mode="indeterminate"> </mat-progress-bar>
+        </div>
+    </div>
+  </div>

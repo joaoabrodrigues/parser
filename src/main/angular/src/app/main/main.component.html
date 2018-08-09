@@ -1,0 +1,50 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+  <a mat-button style="height: 0; position: absolute;"></a>
+      <mat-nav-list fxLayout="column">
+        <mat-list-item routerLink="/main" (click)="sidenav.close()">
+            <button mat-icon-button>
+                <mat-icon>home</mat-icon>
+            </button>
+            <a mdLine>Home</a>
+        </mat-list-item>
+      <mat-list-item routerLink="/main/import" (click)="sidenav.close()">
+          <button mat-icon-button>
+              <mat-icon>import_export</mat-icon>
+          </button>
+          <a mdLine>Import File</a>
+      </mat-list-item>
+      <mat-list-item routerLink="/main/find/parameters" (click)="sidenav.close()">
+          <button mat-icon-button>
+              <mat-icon>search</mat-icon>
+          </button>
+          <a mdLine>Find requests</a>
+      </mat-list-item>
+      <mat-list-item routerLink="/main/find/ip" (click)="sidenav.close()">
+          <button mat-icon-button>
+              <mat-icon>find_in_page</mat-icon>
+          </button>
+          <a mdLine>Find requests by IP</a>
+      </mat-list-item>
+      <mat-list-item (click)="logout()" class="bottom">
+            <button mat-icon-button>
+              <mat-icon> exit_to_app </mat-icon>
+            </button>
+            <a mdLine>Logout</a>
+          </mat-list-item>
+      </mat-nav-list>
+  </mat-sidenav>
+  <mat-toolbar color="primary" fxLayout="row">
+      <button mat-icon-button (click)="sidenav.open()">
+          <mat-icon>menu</mat-icon>
+      </button>
+      <span>Parser</span>
+      <button mat-icon-button (click)="logout()" class="right">
+          <mat-icon> exit_to_app </mat-icon>
+      </button>
+  </mat-toolbar>
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"> </mat-progress-bar>
+  <mat-card id="content">
+    <router-outlet></router-outlet>
+  </mat-card>
+</mat-sidenav-container>
