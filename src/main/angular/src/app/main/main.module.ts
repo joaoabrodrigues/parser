@@ -13,9 +13,9 @@ import { MatSidenavModule,
          MatCardModule,
          MatProgressBarModule} from '@angular/material';
 
-import { ImportComponent } from './import/import.component';
 import { AuthGuard } from './auth.guard';
 import { LoadingService } from './services/loading.service';
+import { ImportModule } from './import/import.module';
 
 @NgModule({
   imports: [
@@ -29,11 +29,11 @@ import { LoadingService } from './services/loading.service';
     MatCardModule,
     MatButtonModule,
     FlexLayoutModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    ImportModule
   ],
   declarations: [
-    MainComponent,
-    ImportComponent
+    MainComponent
   ],
   providers: [AuthGuard, LoadingService]
 })

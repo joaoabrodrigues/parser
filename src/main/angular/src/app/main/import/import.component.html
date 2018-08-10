@@ -1,3 +1,14 @@
-<p>
-  import works!
-</p>
+<form [formGroup]="importForm" fxLayout="column">
+  <div>
+    <mat-form-field fxFlex="49">
+      <input matInput formControlName="path" placeholder="File Path">
+      <mat-error *ngIf="importForm.controls['path'].hasError('required')">
+        Path is mandatory!
+      </mat-error>
+    </mat-form-field>
+    <button type="button" mat-raised-button color="primary" matTooltip="Cadastrar" [disabled]="importForm.controls['path'].hasError('required')"
+      (click)="import()">
+      Import!
+    </button>
+  </div>
+</form>

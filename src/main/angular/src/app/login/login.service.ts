@@ -12,7 +12,7 @@ export class LoginService {
 
   public login(dados) {
     return this._httpClient.post(this.urlLogin, dados);
- }
+  }
 
   public logout() {
     sessionStorage.removeItem('access');
