@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   public form: FormGroup;
   public login = false;
+  public inputType = "password";
 
   constructor(private _formBuilder: FormBuilder,
               private _loginService: LoginService,
@@ -47,5 +48,9 @@ export class LoginComponent implements OnInit {
 
   doSignup() {
     this._router.navigate(['/signup']);
+  }
+
+  changeInputType() {
+    this.inputType = this.inputType == "password" ? "" : "password";
   }
 }

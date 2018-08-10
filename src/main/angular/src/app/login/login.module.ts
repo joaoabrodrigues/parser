@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { LoginService } from './login.service';
-import { MatCardModule, MatInputModule, MatButtonModule, MatProgressBarModule } from '@angular/material';
+import { MatCardModule, MatInputModule, MatButtonModule, MatProgressBarModule, MatIconModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -18,6 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     FlexLayoutModule,
     MatCardModule,
+    MatIconModule,
     MatInputModule,
     MatButtonModule,
     MatProgressBarModule,

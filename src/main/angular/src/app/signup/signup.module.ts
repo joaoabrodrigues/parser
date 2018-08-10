@@ -5,7 +5,7 @@ import { SignupRouting } from './signup.routing';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatCardModule, MatInputModule, MatButtonModule, MatProgressBarModule } from '@angular/material';
+import { MatCardModule, MatInputModule, MatButtonModule, MatProgressBarModule, MatIconModule } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SignupService } from './signup.service';
 import { ToastrModule } from 'ngx-toastr';
@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FlexLayoutModule,
     MatCardModule,
+    MatIconModule,
     MatInputModule,
     MatButtonModule,
     MatProgressBarModule,
