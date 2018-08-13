@@ -34,6 +34,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ImportService } from './import.service';
 import { ImportComponent } from './import.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -57,7 +58,8 @@ import { ImportComponent } from './import.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatDialogModule,
-    RequestErrorModule
+    RequestErrorModule,
+    ToastrModule.forRoot({ preventDuplicates : true })
   ],
   declarations: [
     ImportComponent

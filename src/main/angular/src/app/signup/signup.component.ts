@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SignupService } from './signup.service';
 import { ToastrService } from 'ngx-toastr';
+import { LoadingService } from '../main/services/loading.service';
 
 @Component({
   selector: 'app-signup',
@@ -17,6 +18,7 @@ export class SignupComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder,
               private _signupService: SignupService,
               private toastr: ToastrService,
+              private _loadingService: LoadingService,
               private _router: Router) {
     this.form  = _formBuilder.group({
       'username': [null, Validators.compose([Validators.required])],
@@ -29,10 +31,12 @@ export class SignupComponent implements OnInit {
   }
 
   sendRequest() {
+    this._loadingService.callNextStatus(true);
     this._signupService.signup(this.form.value).subscribe(
       suc => {
+        this._loadingService.callNextStatus(false);
+        this.toastr.success('User created. Please, log in.', 'Success!');
         this._router.navigate(['/main']);
-        this.toastr.success('User created', 'Success');
       }
     );
   }

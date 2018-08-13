@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { LoadingService } from '../main/services/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder,
               private _loginService: LoginService,
               private _toastr: ToastrService,
+              private _loadingService: LoadingService,
               private _router: Router) {
     this.form  = _formBuilder.group({
       'username': [null, Validators.compose([Validators.required])],
@@ -29,9 +31,11 @@ export class LoginComponent implements OnInit {
   }
 
   doLogin() {
+    this._loadingService.callNextStatus(true);
     this._loginService.login(this.form.value).subscribe(
       suc => {
         sessionStorage.setItem('access', JSON.stringify(suc));
+        this._loadingService.callNextStatus(false);
         this._toastr.success("Login successful.", "Success!");
         this._router.navigate(['/main']);
       }

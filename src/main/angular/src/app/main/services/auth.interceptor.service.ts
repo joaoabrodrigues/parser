@@ -10,12 +10,12 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const item = JSON.parse(sessionStorage.getItem('access'));
-    const validacao = item && item.access_token != null;
+    const validacao = item && item.token != null;
     
     if (validacao) {
       req = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${item.access_token}`
+          Authorization: `Bearer ${item.token}`
         }
       });
     }

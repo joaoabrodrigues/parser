@@ -1,4 +1,4 @@
-<form [formGroup]="importForm" fxLayout="column">
+<form [formGroup]="importForm" fxLayout="column" (keyup.enter)="import()">
   <div>
     <mat-form-field fxFlex="49">
       <input matInput formControlName="path" placeholder="File Path">
@@ -6,7 +6,8 @@
         Path is mandatory!
       </mat-error>
     </mat-form-field>
-    <button type="button" mat-raised-button color="primary" matTooltip="Cadastrar" [disabled]="importForm.controls['path'].hasError('required')"
+    <button fxFlexOffset="2" type="button" mat-raised-button color="primary" matTooltip="Cadastrar" 
+            [disabled]="importForm.controls['path'].hasError('required') || loading"
       (click)="import()">
       Import!
     </button>
