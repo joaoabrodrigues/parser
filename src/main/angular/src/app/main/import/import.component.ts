@@ -34,7 +34,6 @@ export class ImportComponent implements OnInit {
         this._loadingService.callNextStatus(false);
         this.loading = false;
       }, err => {
-        console.log("xablau");
         this.loading = false;
       });
     }
