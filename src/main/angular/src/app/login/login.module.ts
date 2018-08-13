@@ -24,7 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatProgressBarModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot({ preventDuplicates: true })
+    ToastrModule.forRoot({ preventDuplicates : true })
   ],
   declarations: [
     LoginComponent

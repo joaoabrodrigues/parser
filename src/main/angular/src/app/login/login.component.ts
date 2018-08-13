@@ -12,12 +12,11 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit {
 
   public form: FormGroup;
-  public login = false;
   public inputType = "password";
 
   constructor(private _formBuilder: FormBuilder,
               private _loginService: LoginService,
-              private toastr: ToastrService,
+              private _toastr: ToastrService,
               private _router: Router) {
     this.form  = _formBuilder.group({
       'username': [null, Validators.compose([Validators.required])],
@@ -27,21 +26,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     sessionStorage.clear();
-    this.login = false;
   }
 
   doLogin() {
-    this.login = true;
     this._loginService.login(this.form.value).subscribe(
       suc => {
         sessionStorage.setItem('access', JSON.stringify(suc));
+        this._toastr.success("Login successful.", "Success!");
         this._router.navigate(['/main']);
-        this.login = false;
-        
-      },
-      err => {
-        this.toastr.error(err.status == 401 ? "Invalid credentials!" : "Unknown error!", 'Error');
-        this.login = false;
       }
     );
   }

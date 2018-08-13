@@ -4,11 +4,13 @@ import { RequestErrorComponent } from './request-error.component';
 import { MatDialogModule } from '@angular/material';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestErrorInterceptorService } from './request-error.interceptor.service';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
     CommonModule,
-    MatDialogModule
+    MatDialogModule,
+    ToastrModule.forRoot({ preventDuplicates: true })
   ],
   declarations: [
     RequestErrorComponent

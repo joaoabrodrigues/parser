@@ -12,7 +12,6 @@ import { ToastrService } from 'ngx-toastr';
 export class SignupComponent implements OnInit {
 
   public form: FormGroup;
-  public signup = false;
   public inputType = "password";
 
   constructor(private _formBuilder: FormBuilder,
@@ -30,16 +29,10 @@ export class SignupComponent implements OnInit {
   }
 
   sendRequest() {
-    this.signup = true;
     this._signupService.signup(this.form.value).subscribe(
       suc => {
         this._router.navigate(['/main']);
         this.toastr.success('User created', 'Success');
-        this.signup = false;
-      },
-      err => {
-        this.toastr.error(err.status == 400 ? err.error.error : err.message , "Error");
-        this.signup = false;
       }
     );
   }
