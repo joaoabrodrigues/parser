@@ -1,5 +1,6 @@
 package br.com.db1.parser.service;
 
+import br.com.db1.parser.exception.BusinessException;
 import br.com.db1.parser.model.DurationType;
 import br.com.db1.parser.model.LogItem;
 import br.com.db1.parser.repository.LogItemRepository;
@@ -10,8 +11,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -50,12 +54,12 @@ public class ParserService {
         this.repository = repository;
     }
 
-    public void print() throws IOException {
+    public void print() throws IOException, BusinessException {
         importLogFile(accessLog);
         findLogs(startDate, duration, threshold);
     }
 
-    public void importLogFile(String fileName) throws IOException {
+    public void importLogFile(String fileName) throws IOException, BusinessException {
         LOG.info(String.format("Importing file: %s ", fileName));
 
         List<String> list = getFileToList(fileName);
@@ -75,11 +79,20 @@ public class ParserService {
         LOG.info("File imported");
     }
 
-    private List<String> getFileToList(String fileName) throws IOException {
+    private List<String> getFileToList(String fileName) throws IOException, BusinessException {
         Stream<String> stream = null;
         try {
-            stream = Files.lines(Paths.get(fileName));
+            Path path = Paths.get(fileName);
+            boolean isDirectory = Files.isDirectory(path);
+            boolean exists = Files.exists(path);
+            if (isDirectory || !exists) {
+                throw new BusinessException(isDirectory ? "Is a directory." : "File not found.");
+            }
+            stream = Files.lines(path);
             return stream.collect(Collectors.toList());
+        } catch (NoSuchFileException | FileNotFoundException e){
+            LOG.error("Error loading log file. " + e.getMessage(), e);
+            throw new BusinessException("File not found.");
         } catch (IOException e) {
             LOG.error("Error loading log file. " + e.getMessage(), e);
             throw e;

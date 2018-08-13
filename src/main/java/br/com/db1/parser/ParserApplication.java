@@ -1,5 +1,6 @@
 package br.com.db1.parser;
 
+import br.com.db1.parser.exception.BusinessException;
 import br.com.db1.parser.service.ParserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +14,7 @@ import java.io.IOException;
 @Configuration
 public class ParserApplication extends SpringBootServletInitializer {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, BusinessException {
         ConfigurableApplicationContext context = SpringApplication.run(ParserApplication.class, args);
 
         context.getBean(ParserService.class).print();

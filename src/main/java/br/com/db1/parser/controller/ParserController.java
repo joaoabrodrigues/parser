@@ -1,6 +1,7 @@
 package br.com.db1.parser.controller;
 
 import br.com.db1.parser.dto.ImportFileRequestDTO;
+import br.com.db1.parser.exception.BusinessException;
 import br.com.db1.parser.model.DurationType;
 import br.com.db1.parser.service.ParserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class ParserController {
     }
 
     @PostMapping(path = "/importFile", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity loadLogFile(@RequestBody ImportFileRequestDTO request) throws IOException {
+    public ResponseEntity loadLogFile(@RequestBody ImportFileRequestDTO request) throws IOException, BusinessException {
         parserService.importLogFile(request.getPath());
         return ResponseEntity.ok("");
     }
