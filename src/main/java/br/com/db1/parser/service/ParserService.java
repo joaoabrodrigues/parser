@@ -1,5 +1,6 @@
 package br.com.db1.parser.service;
 
+import br.com.db1.parser.dto.FindByParametersDTO;
 import br.com.db1.parser.exception.BusinessException;
 import br.com.db1.parser.model.DurationType;
 import br.com.db1.parser.model.LogItem;
@@ -19,10 +20,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -101,7 +99,7 @@ public class ParserService {
         }
     }
 
-    public Map findLogs(LocalDateTime startDate, DurationType duration, Integer threshold) {
+    public List<FindByParametersDTO> findLogs(LocalDateTime startDate, DurationType duration, Integer threshold) {
         LOG.info(String.format("Finding IPs by %s, %s, %d", startDate.toString(), duration.toString(), threshold));
 
         LocalDateTime endDate = DurationType.isDaily(duration) ? startDate.plusDays(1L).minusNanos(1L) : startDate.plusHours(1L).minusNanos(1L);
@@ -112,6 +110,12 @@ public class ParserService {
         filteredItems.values().removeIf(count -> count < threshold);
 
         LOG.info("IPs found: \n" + filteredItems);
-        return filteredItems;
+
+        List<FindByParametersDTO> list = new ArrayList<>();
+        filteredItems.forEach((k, v) -> {
+            list.add(FindByParametersDTO.builder().ip(k).numberOfRequests(v).build());
+        });
+
+        return list;
     }
 }

@@ -1,15 +1,14 @@
 package br.com.db1.parser.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class ImportFileRequestDTO {
+@Getter
+@Builder
+public class FindByParametersDTO {
 
-    @Getter
-    @Setter
-    private String path;
+    private String ip;
+
+    private Long numberOfRequests;
 }
