@@ -16,6 +16,7 @@ import { MatSidenavModule,
 import { AuthGuard } from './auth.guard';
 import { LoadingService } from './services/loading.service';
 import { ImportModule } from './import/import.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { ImportModule } from './import/import.module';
     MatButtonModule,
     FlexLayoutModule,
     MatProgressBarModule,
-    ImportModule
+    ImportModule,
+    ToastrModule.forRoot({ preventDuplicates: true })
   ],
   declarations: [
     MainComponent
