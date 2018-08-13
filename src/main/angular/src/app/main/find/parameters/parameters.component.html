@@ -1,3 +1,63 @@
-<p>
-  parameters works!
-</p>
+<form [formGroup]="findByParametersForm" fxLayout="column" (keyup.enter)="find()">
+  <div>
+    <mat-form-field fxFlex="25">
+      <input matInput formControlName="startDate" placeholder="Start Date">
+      <mat-error *ngIf="findByParametersForm.controls['startDate'].hasError('required')">
+        Start date is mandatory!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="25" fxFlexOffset="2">
+      <mat-select formControlName="duration" placeholder="Duration">
+        <mat-option *ngFor="let duration of durations" [value]="duration.id">
+          {{ duration.desc }}
+        </mat-option>
+      </mat-select>
+
+      <mat-error *ngIf="findByParametersForm.controls['duration'].hasError('required')">
+        Duration is mandatory!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field fxFlex="25" fxFlexOffset="2">
+      <input matInput formControlName="threshold" placeholder="Threshold" type="number">
+      <mat-error *ngIf="findByParametersForm.controls['threshold'].hasError('required')">
+        Threshold is mandatory!
+      </mat-error>
+    </mat-form-field>
+    <button fxFlexOffset="2" type="button" mat-raised-button color="primary" matTooltip="Find" [disabled]="!findByParametersForm.valid || loading"
+      (click)="find()">
+      Find Requests!
+    </button>
+  </div>
+</form>
+
+
+<br/>
+
+<div *ngIf="showTable" class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="ip">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> IP </mat-header-cell>
+      <mat-cell *matCellDef="let log"> {{ log.ip }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="numberOfRequests">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Number Of Requests </mat-header-cell>
+      <mat-cell *matCellDef="let log"> {{ log.numberOfRequests }} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+
+</div>

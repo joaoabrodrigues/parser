@@ -7,7 +7,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class FindService {
 
-  private _findByIpURL = environment.url + '/log/search/findByIp';
+  private _findByParamsURL = environment.url + '/log';
+  private _findByIpURL = this._findByParamsURL + '/search/findByIp';
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -16,5 +17,8 @@ export class FindService {
     return this._httpClient.get<any>(this._findByIpURL, { params: httpParams });
   }
 
-  
+  findParameters(data) {
+    const httpParams = new HttpParams().set('startDate', data.startDate).set('duration', data.duration).set('threshold', data.threshold);
+    return this._httpClient.get<any>(this._findByParamsURL, { params: httpParams });
+  }
 }
