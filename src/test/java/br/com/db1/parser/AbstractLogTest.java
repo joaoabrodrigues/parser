@@ -1,5 +1,6 @@
 package br.com.db1.parser;
 
+import br.com.db1.parser.exception.BusinessException;
 import br.com.db1.parser.model.DurationType;
 import br.com.db1.parser.service.ParserService;
 import org.junit.Before;
@@ -20,7 +21,7 @@ public abstract class AbstractLogTest {
     private static boolean isFileImported = false;
 
     @Before
-    public void setup() throws IOException {
+    public void setup() throws IOException, BusinessException {
         setProperties();
         if (!isFileImported) {
             service.print();

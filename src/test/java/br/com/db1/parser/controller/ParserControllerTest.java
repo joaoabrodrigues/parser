@@ -55,8 +55,10 @@ public class ParserControllerTest extends AbstractMockMvc {
                 .param("threshold", "100")
         )
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$['192.168.106.134']", is(232)))
-                .andExpect(jsonPath("$['192.168.11.231']", is(211)));
+                .andExpect(jsonPath("$[0].ip", is("192.168.106.134")))
+                .andExpect(jsonPath("$[0].numberOfRequests", is(232)))
+                .andExpect(jsonPath("$[1].ip", is("192.168.11.231")))
+                .andExpect(jsonPath("$[1].numberOfRequests", is(211)));
     }
 
     @Test
