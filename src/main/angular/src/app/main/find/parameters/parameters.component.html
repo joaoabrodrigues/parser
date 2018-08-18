@@ -1,7 +1,8 @@
 <form [formGroup]="findByParametersForm" fxLayout="column" (keyup.enter)="find()">
   <div>
     <mat-form-field fxFlex="25">
-      <input matInput formControlName="startDate" placeholder="Start Date">
+      <input matInput formControlName="startDate" [owlDateTimeTrigger]="startDate" [owlDateTime]="startDate" placeholder="Choose the start date">
+      <owl-date-time #startDate></owl-date-time>
       <mat-error *ngIf="findByParametersForm.controls['startDate'].hasError('required')">
         Start date is mandatory!
       </mat-error>

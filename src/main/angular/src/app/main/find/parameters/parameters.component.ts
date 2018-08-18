@@ -4,6 +4,7 @@ import { FindService } from '../find.service';
 import { ToastrService } from 'ngx-toastr';
 import { LoadingService } from '../../services/loading.service';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-parameters',
@@ -53,13 +54,15 @@ export class ParametersComponent implements OnInit {
     if (this.findByParametersForm.valid && !this.loading) {
       this.loading = true;
       this._loadingService.callNextStatus(true);
+      this.findByParametersForm.value.startDate = moment(this.findByParametersForm.value.startDate).format('YYYY-MM-DD.HH:mm:ss');
+      console.log(this.findByParametersForm.value);
       this._findService.findParameters(this.findByParametersForm.value).subscribe(suc => {
         console.log(suc);
         this.dataSource = new MatTableDataSource<any>(suc);
         setTimeout(() => {
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
-        })
+        });
         this.showTable = true;
         this.loading = false;
         this._loadingService.callNextStatus(false);
@@ -68,7 +71,7 @@ export class ParametersComponent implements OnInit {
         this.loading = false;
         this.showTable = false;
         this._loadingService.callNextStatus(false);
-      })
+      });
     }
   }
 }

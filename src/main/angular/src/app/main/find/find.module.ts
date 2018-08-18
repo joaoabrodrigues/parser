@@ -38,6 +38,20 @@ import { IpComponent } from './ip/ip.component';
 import { FindService } from './find.service';
 import { AuthInterceptorService } from '../services/auth.interceptor.service';
 
+import { OwlDateTimeModule, OwlNativeDateTimeModule, OWL_DATE_TIME_FORMATS, DateTimeAdapter } from 'ng-pick-datetime';
+import { OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
+import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
+
+export const MY_MOMENT_FORMATS = {
+  parseInput: 'YYYY-MM-DD.HH:mm:ss',
+  fullPickerInput: 'YYYY-MM-DD.HH:mm:ss',
+  datePickerInput: 'YYYY-MM-DD.HH:mm:ss',
+  timePickerInput: 'YYYY-MM-DD.HH:mm:ss',
+  monthYearLabel: 'YYYY-MM-DD.HH:mm:ss',
+  dateA11yLabel: 'YYYY-MM-DD.HH:mm:ss',
+  monthYearA11yLabel: 'YYYY-MM-DD.HH:mm:ss',
+};
+
 @NgModule({
   imports: [
     CommonModule,
@@ -62,12 +76,22 @@ import { AuthInterceptorService } from '../services/auth.interceptor.service';
     MatDialogModule,
     RequestErrorModule,
     FindRouting,
-    MatPaginatorModule
+    MatPaginatorModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
   ],
   declarations: [ParametersComponent, IpComponent],
   providers: [FormBuilder,
               FindService,
               HttpClient,
+              {
+                provide: DateTimeAdapter,
+                useClass: MomentDateTimeAdapter,
+                deps: [OWL_DATE_TIME_LOCALE]},
+              {
+                provide: OWL_DATE_TIME_FORMATS,
+                useValue: MY_MOMENT_FORMATS
+              },
               {
                 provide: HTTP_INTERCEPTORS,
                 useClass: AuthInterceptorService,
