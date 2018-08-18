@@ -1,5 +1,8 @@
 # LOG-PARSER
 
+[![Build Status](https://travis-ci.org/joaoabrodrigues/parser.svg?branch=master)](https://travis-ci.org/joaoabrodrigues/parser)
+[![codecov](https://codecov.io/gh/joaoabrodrigues/parser/branch/master/graph/badge.svg)](https://codecov.io/gh/joaoabrodrigues/parser)
+
 Meta:
 
 - Escrever um parser que acesse um arquivo de LOG, carregue os dados em um banco de dados e valide se um determinado IP fez mais que um determinado número de requisições em um período de tempo.
