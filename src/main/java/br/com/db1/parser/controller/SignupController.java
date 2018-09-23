@@ -1,5 +1,6 @@
 package br.com.db1.parser.controller;
 
+import br.com.db1.parser.dto.UserDTO;
 import br.com.db1.parser.exception.BusinessException;
 import br.com.db1.parser.model.User;
 import br.com.db1.parser.service.SignupService;
@@ -18,7 +19,7 @@ public class SignupController {
     private SignupService service;
 
     @PostMapping(path = "/signup", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity signup(@RequestBody User user) throws BusinessException {
+    public ResponseEntity signup(@RequestBody UserDTO user) throws BusinessException {
         service.createUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

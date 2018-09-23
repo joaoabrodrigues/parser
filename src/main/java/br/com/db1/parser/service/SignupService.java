@@ -1,5 +1,6 @@
 package br.com.db1.parser.service;
 
+import br.com.db1.parser.dto.UserDTO;
 import br.com.db1.parser.exception.BusinessException;
 import br.com.db1.parser.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class SignupService {
     @Autowired
     private UserService userService;
 
-    public void createUser(User user) throws BusinessException {
+    public void createUser(UserDTO user) throws BusinessException {
         Optional<User> usr = userService.findUserByUsername(user.getUsername());
 
         if (usr.isPresent()) {
@@ -25,6 +26,6 @@ public class SignupService {
         }
 
         user.setPassword(BCRYPT.encode(user.getPassword()));
-        userService.createUser(user);
+        userService.createUser(user.toEntity());
     }
 }

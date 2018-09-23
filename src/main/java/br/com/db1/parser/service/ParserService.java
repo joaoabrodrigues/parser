@@ -81,8 +81,8 @@ public class ParserService {
         Stream<String> stream = null;
         try {
             Path path = Paths.get(fileName);
-            boolean isDirectory = Files.isDirectory(path);
-            boolean exists = Files.exists(path);
+            boolean isDirectory = path.toFile().isDirectory();
+            boolean exists = path.toFile().exists();
             if (isDirectory || !exists) {
                 throw new BusinessException(isDirectory ? "Is a directory." : "File not found.");
             }
@@ -112,9 +112,7 @@ public class ParserService {
         LOG.info("IPs found: \n" + filteredItems);
 
         List<FindByParametersDTO> list = new ArrayList<>();
-        filteredItems.forEach((k, v) -> {
-            list.add(FindByParametersDTO.builder().ip(k).numberOfRequests(v).build());
-        });
+        filteredItems.forEach((k, v) -> list.add(FindByParametersDTO.builder().ip(k).numberOfRequests(v).build()));
 
         return list;
     }
