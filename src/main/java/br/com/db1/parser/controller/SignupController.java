@@ -2,7 +2,6 @@ package br.com.db1.parser.controller;
 
 import br.com.db1.parser.dto.UserDTO;
 import br.com.db1.parser.exception.BusinessException;
-import br.com.db1.parser.model.User;
 import br.com.db1.parser.service.SignupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
