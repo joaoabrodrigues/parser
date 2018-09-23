@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/joaoabrodrigues/parser.svg?branch=master)](https://travis-ci.org/joaoabrodrigues/parser)
 [![codecov](https://codecov.io/gh/joaoabrodrigues/parser/branch/master/graph/badge.svg)](https://codecov.io/gh/joaoabrodrigues/parser)
+[![sonar](https://sonarcloud.io/api/project_badges/measure?project=br.com.db1%3Aparser&metric=alert_status)](https://sonarcloud.io/dashboard?id=br.com.db1%3Aparser)
 
 ----
 
