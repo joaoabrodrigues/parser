@@ -1,0 +1,18 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: parser-backend/latest
+    ports:
+      - "8080:8080"
+  frontend:
+    build:
+      context: src/main/angular
+      dockerfile: Dockerfile
+    image: parser-frontend/latest
+    ports:
+      - "80:80"
+    depends_on:
+      - backend

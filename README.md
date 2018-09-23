@@ -3,6 +3,24 @@
 [![Build Status](https://travis-ci.org/joaoabrodrigues/parser.svg?branch=master)](https://travis-ci.org/joaoabrodrigues/parser)
 [![codecov](https://codecov.io/gh/joaoabrodrigues/parser/branch/master/graph/badge.svg)](https://codecov.io/gh/joaoabrodrigues/parser)
 
+----
+
+Para rodar:
+- Java 8
+- Maven 3.5.2
+- Docker 18.x
+- Docker Compose 1.22
+
+Certifique-se de tornar o arquivo start.sh executável com 
+
+    sudo chmod +x start.sh
+
+Após isso, basta executá-lo
+
+    ./start.sh
+
+----
+
 Meta:
 
 - Escrever um parser que acesse um arquivo de LOG, carregue os dados em um banco de dados e valide se um determinado IP fez mais que um determinado número de requisições em um período de tempo.
